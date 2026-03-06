@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3er | Vélo Cargo Électrique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+/* ============================================
+   3er - Vélo Cargo Électrique
+   Styles CSS - Thème Blanc & Bleu Urbain
+   Avec images réelles du vélo
+   ============================================ */
+
+/* Variables */
+:root {
+    --white: #ffffff;
+    --off-white: #f8fafc;
+    --light-gray: #e8f0fe;
+    --gray: #94a3b8;
+    --dark-gray: #64748b;
+    --dark: #1a1a2e;
+    --darker: #0f0f1a;
+
+    --blue-100: #dbeafe;
+    --blue-200: #bfdbfe;
+    --blue-300: #93c5fd;
+    --blue-400: #60a5fa;
+    --blue-500: #3b82f6;
+    --blue-600: #0066FF;
+    --blue-700: #0052cc;
+    --blue-800: #1e40af;
+
+    --gradient-blue: linear-gradient(135deg, var(--blue-600) 0%, var(--blue-400) 100%);
+    --gradient-light: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-blue: 0 10px 40px rgba(0, 102, 255, 0.15);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Custom Cursor */
+.cursor {
+    width: 12px;
+    height: 12px;
+    background: var(--blue-600);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--blue-600);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    opacity: 0.5;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.25rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 102, 255, 0.1);
+    transition: var(--transition);
+}
+
+nav.scrolled {
+    padding: 1rem 4rem;
+    box-shadow: var(--shadow-md);
+}
+
+.logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--blue-600);
+    letter-spacing: -0.02em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--dark-gray);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-blue);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--blue-600);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--light-gray);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--blue-600);
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--blue-600);
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8rem 4rem 4rem;
+    overflow: hidden;
+    background: var(--gradient-light);
+}
+
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.shape-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+    bottom: -100px;
+    left: -100px;
+}
+
+.shape-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
+    top: 40%;
+    left: 30%;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1400px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--blue-600);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.hero-tag svg {
+    width: 18px;
+    height: 18px;
+}
+
+.hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.hero h1 .line {
+    display: block;
+}
+
+.hero h1 .highlight {
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description {
+    color: var(--dark-gray);
+    font-size: 1.15rem;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--white);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--light-gray);
+    transition: var(--transition);
+}
+
+.stat:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--light-gray);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--blue-600);
+}
+
+.stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+}
+
+.stat-value small {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--blue-600);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* Hero Visual - Real Bike Image */
+.hero-visual {
+    position: relative;
+    opacity: 0;
+    transform: translateX(40px);
+    animation: fadeLeft 0.8s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.bike-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 85%;
+}
+
+.bike-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.bike-image-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: auto;
+    z-index: 2;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.bike-image-container:hover {
+    transform: translate(-50%, -50%) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 102, 255, 0.2);
+}
+
+.bike-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.bike-image-container:hover .bike-photo {
+    transform: scale(1.05);
+}
+
+/* Floating Badges */
+.floating-badge {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 3;
+    animation: float 4s ease-in-out infinite;
+    transition: var(--transition);
+}
+
+.floating-badge:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--shadow-blue);
+}
+
+.badge-motor {
+    top: 5%;
+    right: 5%;
+    animation-delay: 0s;
+}
+
+.badge-weight {
+    bottom: 15%;
+    left: 0;
+    animation-delay: 1.5s;
+}
+
+.badge-battery {
+    top: 40%;
+    right: -5%;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.badge-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--light-gray);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.floating-badge:hover .badge-icon {
+    background: var(--blue-600);
+}
+
+.badge-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--blue-600);
+    transition: var(--transition);
+}
+
+.floating-badge:hover .badge-icon svg {
+    color: var(--white);
+}
+
+.badge-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark);
+    display: block;
+}
+
+.badge-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--gray);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.scroll-line {
+    width: 2px;
+    height: 40px;
+    background: var(--light-gray);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: var(--blue-600);
+    animation: scroll-down 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll-down {
+    0% { top: -50%; }
+    100% { top: 100%; }
+}
+
+/* Section Styles */
+section {
+    padding: 7rem 4rem;
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+}
+
+.section-tag {
+    display: inline-block;
+    background: var(--light-gray);
+    color: var(--blue-600);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.section-title span {
+    color: var(--blue-600);
+}
+
+.section-description {
+    color: var(--dark-gray);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Features Section */
+.features {
+    background: var(--white);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.feature-card {
+    background: var(--off-white);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-blue);
+    border-color: var(--blue-200);
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--light-gray);
+    line-height: 1;
+}
+
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon {
+    background: var(--blue-600);
+    border-color: var(--blue-600);
+}
+
+.feature-icon svg {
+    width: 26px;
+    height: 26px;
+    color: var(--blue-600);
+    transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon svg {
+    color: var(--white);
+}
+
+.feature-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--dark);
+}
+
+.feature-card p {
+    color: var(--dark-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Specs Section */
+.specs {
+    background: var(--off-white);
+}
+
+.specs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.specs-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.specs-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--light-gray);
+    border-bottom: 1px solid var(--blue-100);
+}
+
+.specs-card-tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.specs-card-ref {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--blue-600);
+}
+
+/* Specs Image with Hotspots */
+.specs-image-container {
+    position: relative;
+    padding: 1.5rem;
+    background: var(--white);
+}
+
+.specs-bike-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.specs-image-container:hover .specs-bike-photo {
+    transform: scale(1.02);
+}
+
+/* Interactive Hotspots */
+.specs-hotspot {
+    position: absolute;
+    z-index: 10;
+}
+
+.hotspot-dot {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: var(--blue-600);
+    border: 3px solid var(--white);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 102, 255, 0.4);
+    animation: hotspot-pulse 2s infinite;
+    transition: var(--transition);
+}
+
+.specs-hotspot:hover .hotspot-dot {
+    transform: scale(1.3);
+    background: var(--blue-400);
+}
+
+@keyframes hotspot-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(0, 102, 255, 0); }
+}
+
+.hotspot-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: var(--dark);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.hotspot-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--dark);
+}
+
+.specs-hotspot:hover .hotspot-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-15px);
+}
+
+/* Hotspot Positions */
+.hotspot-battery {
+    top: 45%;
+    left: 35%;
+}
+
+.hotspot-rack {
+    top: 30%;
+    left: 20%;
+}
+
+.hotspot-basket {
+    top: 35%;
+    right: 18%;
+}
+
+.hotspot-wheel {
+    bottom: 25%;
+    right: 25%;
+}
+
+.specs-card-footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--light-gray);
+}
+
+.specs-mini {
+    padding: 1.25rem;
+    text-align: center;
+    border-right: 1px solid var(--light-gray);
+    transition: var(--transition);
+}
+
+.specs-mini:last-child {
+    border-right: none;
+}
+
+.specs-mini:hover {
+    background: var(--light-gray);
+}
+
+.mini-value {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.mini-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.specs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.spec-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-lg);
+    transition: var(--transition);
+}
+
+.spec-item:hover {
+    border-color: var(--blue-200);
+    box-shadow: var(--shadow-md);
+    transform: translateX(8px);
+}
+
+.spec-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--light-gray);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.spec-item:hover .spec-icon {
+    background: var(--blue-600);
+}
+
+.spec-icon svg {
+    width: 22px;
+    height: 22px;
+    color: var(--blue-600);
+    transition: var(--transition);
+}
+
+.spec-item:hover .spec-icon svg {
+    color: var(--white);
+}
+
+.spec-info {
+    flex: 1;
+}
+
+.spec-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.spec-value {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* Benefits Section */
+.benefits {
+    background: var(--white);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.benefit-card {
+    background: var(--off-white);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.benefit-card:hover {
+    border-color: var(--blue-200);
+    box-shadow: var(--shadow-blue);
+}
+
+.benefit-large {
+    grid-column: span 2;
+    background: var(--gradient-blue);
+    border: none;
+    color: var(--white);
+}
+
+.benefit-large h3,
+.benefit-large p {
+    color: var(--white);
+}
+
+.benefit-large .benefit-icon {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.benefit-large .benefit-icon svg {
+    color: var(--white);
+}
+
+.benefit-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.benefit-icon svg {
+    width: 26px;
+    height: 26px;
+    color: var(--blue-600);
+}
+
+.benefit-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.benefit-card p {
+    color: var(--black);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.benefit-stat {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.benefit-stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.benefit-stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Eco Section */
+.eco {
+    background: var(--off-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.eco-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.eco-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.eco-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.eco-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue-600);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-blue);
+}
+
+.eco-badge svg {
+    width: 20px;
+    height: 20px;
+}
+
+.eco h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.eco h2 span {
+    color: var(--blue-600);
+}
+
+.eco > .container > .eco-content > p {
+    color: var(--dark-gray);
+    font-size: 1.15rem;
+    max-width: 550px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+}
+
+.eco-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.eco-stat {
+    text-align: center;
+}
+
+.eco-stat-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+}
+
+.eco-stat-circle svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.eco-stat-circle .progress-circle {
+    transition: stroke-dashoffset 1s ease;
+}
+
+.eco-stat-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.eco-stat-label {
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background: var(--dark);
+    color: var(--white);
+    padding: 4rem 0 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--blue-400);
+    margin-bottom: 1rem;
+}
+
+.footer-brand p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    max-width: 280px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 4rem;
+}
+
+.footer-column h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--white);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 0.75rem;
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.footer-column a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.footer-column a:hover {
+    color: var(--blue-400);
+}
+
+.footer-certification {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+}
+
+.cert-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--blue-600);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--white);
+}
+
+.cert-text span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.cert-text strong {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    nav {
+        padding: 1rem 2rem;
+    }
+
+    .hero {
+        padding: 6rem 2rem 4rem;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .hero-text {
+        order: 2;
+    }
+
+    .hero-visual {
+        order: 1;
+        max-width: 600px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .bike-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .bike-image-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+    }
+
+    .bike-glow {
+        display: none;
+    }
+
+    .hero-description {
+        margin: 0 auto 2rem;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .specs-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefit-large {
+        grid-column: span 1;
+    }
+
+    section {
+        padding: 5rem 2rem;
+    }
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: var(--light-gray);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    gap: 5px;
+    padding: 10px;
+    z-index: 1001;
+    transition: var(--transition);
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--blue-600);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.mobile-menu-btn.active {
+    background: var(--blue-600);
+}
+
+.mobile-menu-btn.active span {
+    background: var(--white);
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--white);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mobile-nav-links a {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    transition: var(--transition);
+    display: block;
+    padding: 0.5rem;
+}
+
+.mobile-nav-links a:hover {
+    color: var(--blue-600);
+}
+
+.mobile-nav-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--light-gray);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--blue-600);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .nav-links,
+    .nav-badge {
+        display: none;
+    }
+
+    nav {
+        padding: 1rem 1.5rem;
+    }
+
+    .logo {
+        font-size: 1.75rem;
+    }
+
+    .cursor,
+    .cursor-follower {
+        display: none;
+    }
+
+    .hero {
+        padding: 5rem 1.5rem 3rem;
+        min-height: auto;
+    }
+
+    .hero-text {
+        order: 1;
+    }
+
+    .hero-visual {
+        order: 2;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .stat {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 1rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .hero-visual {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .bike-wrapper {
+        position: relative;
+        width: 100%;
+        padding-top: 0;
+        height: auto;
+    }
+
+    .bike-glow {
+        display: none;
+    }
+
+    .bike-image-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .bike-photo {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    section {
+        padding: 4rem 1.5rem;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .section-description {
+        font-size: 1rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .feature-number {
+        font-size: 2rem;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .feature-card p {
+        font-size: 0.9rem;
+    }
+
+    .specs-card-header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .specs-image-container {
+        padding: 1rem;
+    }
+
+    .specs-card-footer {
+        grid-template-columns: 1fr;
+    }
+
+    .specs-mini {
+        border-right: none;
+        border-bottom: 1px solid var(--light-gray);
+        padding: 1rem;
+    }
+
+    .specs-mini:last-child {
+        border-bottom: none;
+    }
+
+    .specs-list {
+        gap: 0.75rem;
+    }
+
+    .spec-item {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .spec-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .spec-value {
+        font-size: 0.9rem;
+    }
+
+    .specs-hotspot {
+        display: none;
+    }
+
+    .benefits-grid {
+        gap: 1rem;
+    }
+
+    .benefit-card {
+        padding: 1.5rem;
+    }
+
+    .benefit-stat {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .benefit-stat-value {
+        font-size: 2.5rem;
+    }
+
+    .eco-stats {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .eco-stat-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .eco-stat-value {
+        font-size: 1.1rem;
+    }
+
+    .eco h2 {
+        font-size: 1.75rem;
+    }
+
+    footer {
+        padding: 3rem 0 1.5rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+    }
+
+    .footer-logo {
+        font-size: 2rem;
+    }
+
+    .footer-links {
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .footer-column {
+        min-width: 120px;
+    }
+
+    .footer-badge-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-certification {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .footer-bottom {
+        padding-top: 1.5rem;
+    }
+
+    .footer-bottom p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .stat {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .stat-icon {
+        margin: 0 auto;
+    }
+
+    .mobile-nav-links a {
+        font-size: 1.5rem;
+    }
+
+    .bike-image-container {
+        border-radius: var(--radius-md);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">3er</div>
+        <ul class="nav-links">
+            <li><a href="#features">Avantages</a></li>
+            <li><a href="#specs">Spécifications</a></li>
+            <li><a href="#benefits">Bénéfices</a></li>
+            <li><a href="#eco">Engagement</a></li>
+        </ul>
+        <div class="nav-badge">
+            <span class="badge-dot"></span>
+            Marque Française
+        </div>
+        <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <ul class="mobile-nav-links">
+            <li><a href="#features">Avantages</a></li>
+            <li><a href="#specs">Spécifications</a></li>
+            <li><a href="#benefits">Bénéfices</a></li>
+            <li><a href="#eco">Engagement</a></li>
+        </ul>
+        <div class="mobile-nav-badge">
+            <span class="badge-dot"></span>
+            Marque Française
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-tag">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    Mobilité Électrique
+                </div>
+                <h1>
+                    <span class="line">La ville</span>
+                    <span class="line highlight">autrement</span>
+                </h1>
+                <p class="hero-description">
+                    Découvrez le vélo cargo électrique conçu pour les professionnels urbains.
+                    Performance, écologie et élégance pour transformer vos déplacements.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M2 12h20"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value">185<small>kg</small></span>
+                            <span class="stat-label">Capacité totale</span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value">50<small>km</small></span>
+                            <span class="stat-label">Autonomie</span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value">0<small>g</small></span>
+                            <span class="stat-label">CO₂ émis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="bike-wrapper">
+                    <div class="bike-glow"></div>
+                    <div class="bike-image-container">
+                        <img src="./Bike urban.png" alt="Vélo cargo électrique 3er" class="bike-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Découvrir</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Avantages</span>
+                <h2 class="section-title">Pourquoi choisir <span>3er</span> ?</h2>
+                <p class="section-description">
+                    Une solution de mobilité complète pensée pour les professionnels exigeants.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-number">01</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M2 12h20"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                    </div>
+                    <h3>Performance Optimale</h3>
+                    <p>Capacité de charge de 57kg utile et un PTAC de 185kg pour tous vos équipements professionnels.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-number">02</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3>Autonomie Adaptée</h3>
+                    <p>Jusqu'à 50km d'autonomie selon l'utilisation, parfait pour vos trajets quotidiens en ville.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-number">03</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Sécurité Garantie</h3>
+                    <p>Cadre acier renforcé, freins à disques 180mm et indice IP54 pour rouler en toute confiance.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-number">04</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Mobilité Urbaine</h3>
+                    <p>Accédez aux zones piétonnes, évitez les embouteillages et stationnez facilement partout.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-number">05</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2"/>
+                            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                        </svg>
+                    </div>
+                    <h3>Rangement Pratique</h3>
+                    <p>Panier avant (7kg) et porte-bagages arrière en acier (50kg) pour une organisation optimale.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-number">06</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                    </div>
+                    <h3>Certifié Conforme</h3>
+                    <p>Éligible à la fiche TRA-EQ-131, conforme aux normes EN 15194 et directives européennes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs" id="specs">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Technique</span>
+                <h2 class="section-title">Spécifications <span>détaillées</span></h2>
+                <p class="section-description">
+                    Des composants de qualité pour une fiabilité à toute épreuve.
+                </p>
+            </div>
+            <div class="specs-container">
+                <div class="specs-visual reveal">
+                    <div class="specs-card">
+                        <div class="specs-card-header">
+                            <span class="specs-card-tag">Référence</span>
+                            <span class="specs-card-ref">AX_ELE004</span>
+                        </div>
+                        <div class="specs-image-container">
+                            <img src="./Bike studio.png" alt="Vélo cargo électrique 3er - Vue détaillée" class="specs-bike-photo">
+                            <div class="specs-hotspot hotspot-battery">
+                                <span class="hotspot-dot"></span>
+                                <div class="hotspot-tooltip">Batterie 468Wh</div>
+                            </div>
+                            <div class="specs-hotspot hotspot-rack">
+                                <span class="hotspot-dot"></span>
+                                <div class="hotspot-tooltip">Porte-bagages 50kg</div>
+                            </div>
+                            <div class="specs-hotspot hotspot-basket">
+                                <span class="hotspot-dot"></span>
+                                <div class="hotspot-tooltip">Panier avant 7kg</div>
+                            </div>
+                            <div class="specs-hotspot hotspot-wheel">
+                                <span class="hotspot-dot"></span>
+                                <div class="hotspot-tooltip">Roues 20" WANDA</div>
+                            </div>
+                        </div>
+                        <div class="specs-card-footer">
+                            <div class="specs-mini">
+                                <span class="mini-value">158cm</span>
+                                <span class="mini-label">Longueur</span>
+                            </div>
+                            <div class="specs-mini">
+                                <span class="mini-value">88cm</span>
+                                <span class="mini-label">Hauteur</span>
+                            </div>
+                            <div class="specs-mini">
+                                <span class="mini-value">27cm</span>
+                                <span class="mini-label">Largeur</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specs-list reveal">
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                <path d="M22 11v4"/>
+                            </svg>
+                        </div>
+                        <div class="spec-info">
+                            <span class="spec-label">Batterie</span>
+                            <span class="spec-value">Lithium-ion 468Wh 36V 13Ah</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div class="spec-info">
+                            <span class="spec-label">Moteur</span>
+                            <span class="spec-value">36V - 250W</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="spec-info">
+                            <span class="spec-label">Transmission</span>
+                            <span class="spec-value">7 vitesses Shimano</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="16"/>
+                                <line x1="8" y1="12" x2="16" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="spec-info">
+                            <span class="spec-label">Freins</span>
+                            <span class="spec-value">Disques mécaniques 180mm</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <div class="spec-info">
+                            <span class="spec-label">Roues</span>
+                            <span class="spec-value">WANDA 20" x 3.0</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="spec-info">
+                            <span class="spec-label">Protection</span>
+                            <span class="spec-value">IP54</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/>
+                            </svg>
+                        </div>
+                        <div class="spec-info">
+                            <span class="spec-label">Poids</span>
+                            <span class="spec-value">32 kg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Bénéfices</span>
+                <h2 class="section-title">Transformez votre <span>mobilité</span></h2>
+                <p class="section-description">
+                    Une solution économique et écologique pour votre activité professionnelle.
+                </p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card benefit-large reveal">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                        </svg>
+                    </div>
+                    <h3>Réduction des coûts</h3>
+                    <p>Jusqu'à 10 fois plus économique que la voiture : moins de carburant, moins d'entretien, pas de frais de stationnement. Un investissement rentable dès la première année.</p>
+                    <div class="benefit-stat">
+                        <span class="benefit-stat-value">-90%</span>
+                        <span class="benefit-stat-label">de frais de transport</span>
+                    </div>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3>Gain de temps</h3>
+                    <p>Circulez sans embouteillages, accédez aux zones piétonnes et stationnez instantanément.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Image de marque</h3>
+                    <p>Affirmez votre engagement RSE et attirez une clientèle sensible aux valeurs environnementales.</p>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                        </svg>
+                    </div>
+                    <h3>Flexibilité totale</h3>
+                    <p>Optimisé pour le dernier kilomètre, transportez outils et marchandises sans contrainte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eco Section -->
+    <section class="eco" id="eco">
+        <div class="eco-bg">
+            <div class="eco-circle"></div>
+        </div>
+        <div class="container">
+            <div class="eco-content reveal">
+                <div class="eco-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    Éligible CEE
+                </div>
+                <h2>Engagé pour <span>l'environnement</span></h2>
+                <p>
+                    Réduisez votre empreinte carbone avec une solution de mobilité 100% écologique,
+                    conforme aux certifications CEE pour les économies d'énergie.
+                </p>
+                <div class="eco-stats">
+                    <div class="eco-stat">
+                        <div class="eco-stat-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" stroke="#E8F0FE" stroke-width="8" fill="none"/>
+                                <circle cx="50" cy="50" r="45" stroke="#0066FF" stroke-width="8" fill="none"
+                                    stroke-dasharray="283" stroke-dashoffset="0" stroke-linecap="round" class="progress-circle"/>
+                            </svg>
+                            <span class="eco-stat-value">0g</span>
+                        </div>
+                        <span class="eco-stat-label">CO₂ par km</span>
+                    </div>
+                    <div class="eco-stat">
+                        <div class="eco-stat-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" stroke="#E8F0FE" stroke-width="8" fill="none"/>
+                                <circle cx="50" cy="50" r="45" stroke="#0066FF" stroke-width="8" fill="none"
+                                    stroke-dasharray="283" stroke-dashoffset="0" stroke-linecap="round" class="progress-circle"/>
+                            </svg>
+                            <span class="eco-stat-value">2 ans</span>
+                        </div>
+                        <span class="eco-stat-label">Garantie</span>
+                    </div>
+                    <div class="eco-stat">
+                        <div class="eco-stat-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" stroke="#E8F0FE" stroke-width="8" fill="none"/>
+                                <circle cx="50" cy="50" r="45" stroke="#0066FF" stroke-width="8" fill="none"
+                                    stroke-dasharray="283" stroke-dashoffset="0" stroke-linecap="round" class="progress-circle"/>
+                            </svg>
+                            <span class="eco-stat-value">100%</span>
+                        </div>
+                        <span class="eco-stat-label">Électrique</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">3er</div>
+                    <p>Mobilité urbaine réinventée pour les professionnels.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#features">Avantages</a></li>
+                            <li><a href="#specs">Spécifications</a></li>
+                            <li><a href="#benefits">Bénéfices</a></li>
+                            <li><a href="#eco">Engagement</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Certifications</h4>
+                        <ul>
+                            <li>Éligible TRA-EQ-131</li>
+                            <li>Norme EN 15194</li>
+                            <li>Norme EN 17860</li>
+                            <li>Directives UE</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-badge-container">
+                    <div class="footer-certification">
+                        <div class="cert-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <div class="cert-text">
+                            <span>Marque</span>
+                            <strong>Française</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 3er. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+/* ============================================
+   3er - Vélo Cargo Électrique
+   JavaScript - Interactions & Animations
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Custom Cursor
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+        cursorX += (mouseX - cursorX) * 0.2;
+        cursorY += (mouseY - cursorY) * 0.2;
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+        if (cursor) { cursor.style.left = cursorX - 6 + 'px'; cursor.style.top = cursorY - 6 + 'px'; }
+        if (cursorFollower) { cursorFollower.style.left = followerX - 20 + 'px'; cursorFollower.style.top = followerY - 20 + 'px'; }
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    const hoverElements = document.querySelectorAll('a, button, .feature-card, .spec-item, .benefit-card, .stat, .floating-badge, .bike-image-container, .specs-hotspot');
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => { if (cursor) cursor.style.transform = 'scale(2)'; if (cursorFollower) cursorFollower.style.transform = 'scale(1.5)'; });
+        el.addEventListener('mouseleave', () => { if (cursor) cursor.style.transform = 'scale(1)'; if (cursorFollower) cursorFollower.style.transform = 'scale(1)'; });
+    });
+
+    // Navigation Scroll Effect
+    const nav = document.querySelector('nav');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+    });
+
+    // Mobile Menu Toggle
+    if (mobileMenuBtn && mobileMenuOverlay) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
+        });
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => { mobileMenuBtn.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; });
+        });
+        mobileMenuOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileMenuOverlay) { mobileMenuBtn.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+        });
+    }
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target) {
+                if (mobileMenuBtn && mobileMenuOverlay) { mobileMenuBtn.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+                const navHeight = nav.offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Scroll Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+        const windowHeight = window.innerHeight;
+        reveals.forEach((el, index) => {
+            if (el.getBoundingClientRect().top < windowHeight - 150) { setTimeout(() => { el.classList.add('active'); }, index * 50); }
+        });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // Hero Bike Image Parallax
+    const bikeWrapper = document.querySelector('.bike-wrapper');
+    const bikePhoto = document.querySelector('.bike-photo');
+    const floatingBadges = document.querySelectorAll('.floating-badge');
+
+    if (bikeWrapper) {
+        bikeWrapper.addEventListener('mousemove', (e) => {
+            const rect = bikeWrapper.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            if (bikePhoto) bikePhoto.style.transform = `scale(1.05) translate(${x * 20}px, ${y * 20}px)`;
+            floatingBadges.forEach((badge, index) => { const intensity = 15 + (index * 5); badge.style.transform = `translate(${-x * intensity}px, ${-y * intensity}px)`; });
+        });
+        bikeWrapper.addEventListener('mouseleave', () => {
+            if (bikePhoto) bikePhoto.style.transform = 'scale(1)';
+            floatingBadges.forEach(badge => { badge.style.transform = 'translate(0, 0)'; });
+        });
+    }
+
+    // Specs Image Parallax
+    const specsImageContainer = document.querySelector('.specs-image-container');
+    const specsBikePhoto = document.querySelector('.specs-bike-photo');
+    if (specsImageContainer && specsBikePhoto) {
+        specsImageContainer.addEventListener('mousemove', (e) => {
+            const rect = specsImageContainer.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            specsBikePhoto.style.transform = `scale(1.02) translate(${x * 10}px, ${y * 10}px)`;
+        });
+        specsImageContainer.addEventListener('mouseleave', () => { specsBikePhoto.style.transform = 'scale(1)'; });
+    }
+
+    // Hero Parallax on Scroll
+    const heroVisual = document.querySelector('.hero-visual');
+    const heroShapes = document.querySelectorAll('.shape');
+    const bikeGlow = document.querySelector('.bike-glow');
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const heroHeight = document.querySelector('.hero').offsetHeight;
+        if (scrolled < heroHeight) {
+            if (heroVisual) heroVisual.style.transform = `translateY(${scrolled * 0.1}px)`;
+            heroShapes.forEach((shape, index) => { shape.style.transform = `translateY(${scrolled * (0.05 + index * 0.02)}px)`; });
+            if (bikeGlow) bikeGlow.style.opacity = 0.6 - (scrolled * 0.001);
+        }
+    });
+
+    // Feature Cards Tilt
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.transform = `perspective(1000px) rotateX(${(y - rect.height/2) / 15}deg) rotateY(${(rect.width/2 - x) / 15}deg) translateY(-8px)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)'; });
+    });
+
+    // Spec Items Delay
+    document.querySelectorAll('.spec-item').forEach((item, index) => { item.style.transitionDelay = `${index * 0.05}s`; });
+
+    // Eco Circles Animation
+    const ecoSection = document.querySelector('.eco');
+    let ecoAnimated = false;
+    function animateEcoCircles() {
+        if (ecoAnimated || !ecoSection) return;
+        const rect = ecoSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+            ecoAnimated = true;
+            document.querySelectorAll('.progress-circle').forEach((circle, index) => { setTimeout(() => { circle.style.strokeDashoffset = '0'; }, index * 200); });
+        }
+    }
+    window.addEventListener('scroll', animateEcoCircles);
+    animateEcoCircles();
+
+    // Floating Badges Random Animation
+    floatingBadges.forEach((badge) => {
+        badge.style.animationDelay = `${Math.random() * 2}s`;
+        badge.style.animationDuration = `${3 + Math.random() * 2}s`;
+    });
+
+    // Image Loading
+    document.querySelectorAll('.bike-photo, .specs-bike-photo').forEach(img => {
+        img.addEventListener('load', () => { img.style.opacity = '1'; });
+        if (img.complete) img.style.opacity = '1';
+    });
+
+    // Hotspot Click Handler
+    document.querySelectorAll('.specs-hotspot').forEach(hotspot => {
+        hotspot.addEventListener('click', () => {
+            document.querySelectorAll('.specs-hotspot').forEach(h => h.classList.remove('active'));
+            hotspot.classList.add('active');
+        });
+    });
+
+    // Stats Entrance Animation
+    let statsAnimated = false;
+    function animateStats() {
+        if (statsAnimated) return;
+        const heroStats = document.querySelector('.hero-stats');
+        if (!heroStats) return;
+        if (heroStats.getBoundingClientRect().top < window.innerHeight) {
+            statsAnimated = true;
+            document.querySelectorAll('.stat-value').forEach((stat, index) => {
+                stat.style.opacity = '0'; stat.style.transform = 'translateY(20px)';
+                setTimeout(() => { stat.style.transition = 'all 0.5s ease'; stat.style.opacity = '1'; stat.style.transform = 'translateY(0)'; }, index * 100);
+            });
+        }
+    }
+    window.addEventListener('scroll', animateStats);
+    animateStats();
+
+    // Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('section').forEach(section => { observer.observe(section); });
+
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.documentElement.style.setProperty('--scroll-progress', `${scrollPercent}%`);
+    });
+
+    // Page Load
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach((el, index) => {
+                if (el.getBoundingClientRect().top < window.innerHeight) { setTimeout(() => { el.classList.add('active'); }, index * 100); }
+            });
+        }, 300);
+    });
+
+});
+    </script>
+</body>
+</html>
